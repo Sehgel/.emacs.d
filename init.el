@@ -20,41 +20,40 @@
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-(defun move-text-internal (arg)
-   (cond
-    ((and mark-active transient-mark-mode)
-     (if (> (point) (mark))
-            (exchange-point-and-mark))
-     (let ((column (current-column))
-              (text (delete-and-extract-region (point) (mark))))
-       (forward-line arg)
-       (move-to-column column t)
-       (set-mark (point))
-       (insert text)
-       (exchange-point-and-mark)
-       (setq deactivate-mark nil)))
-    (t
-     (beginning-of-line)
-     (when (or (> arg 0) (not (bobp)))
-       (forward-line)
-       (when (or (< arg 0) (not (eobp)))
-            (transpose-lines arg))
-       (forward-line -1)))))
+(defun move-line-up ()
+  "Move up the current line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
 
-(defun move-text-down (arg)
-   "Move region (transient-mark-mode active) or current line
-  arg lines down."
-   (interactive "*p")
-   (move-text-internal arg))
+(defun move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+ 
+(defun move-line-up-and-preserve-column ()
+  "Move the current line up by one, preserving the cursor's column position."
+  (interactive)
+  (let ((current-column (current-column)))
+    (transpose-lines 1)
+    (forward-line -2) ; Move back to the original line's position after transpose
+    (move-to-column current-column t))) ; Move to the preserved column, creating spaces if needed
 
-(defun move-text-up (arg)
-   "Move region (transient-mark-mode active) or current line
-  arg lines up."
-   (interactive "*p")
-   (move-text-internal (- arg)))
-
-(global-set-key (kbd "M-<up>") 'move-text-up)
-(global-set-key (kbd "M-<down>") 'move-text-down)
+(defun move-line-down-and-preserve-column ()
+  "Move the current line up by one, preserving the cursor's column position."
+  (interactive)
+  (let ((current-column (current-column)))
+    (forward-line 1)
+	(transpose-lines 1)
+	(forward-line -1)
+    (move-to-column current-column t))) ; Move to the preserved column, creating spaces if needed
+	
+(global-set-key (kbd "M-<up>") 'move-line-up-and-preserve-column)
+(global-set-key (kbd "M-<down>") 'move-line-down-and-preserve-column)
 
 ;KEY BINDINGS
 
