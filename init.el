@@ -51,9 +51,6 @@
 	(transpose-lines 1)
 	(forward-line -1)
     (move-to-column current-column t))) ; Move to the preserved column, creating spaces if needed
-	
-(global-set-key (kbd "M-<up>") 'move-line-up-and-preserve-column)
-(global-set-key (kbd "M-<down>") 'move-line-down-and-preserve-column)
 
 ;KEY BINDINGS
 
@@ -62,6 +59,9 @@
 
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-S-f"))
+
+(global-set-key (kbd "M-<up>") 'move-line-up-and-preserve-column)
+(global-set-key (kbd "M-<down>") 'move-line-down-and-preserve-column)
 
 (global-set-key (kbd "C-c") 'kill-ring-save)
 (global-set-key (kbd "C-x") 'kill-region)
