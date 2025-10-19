@@ -74,3 +74,5 @@
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (global-set-key (kbd "C-S-f") 'isearch-backward)
 (define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
+
+(add-to-list 'default-frame-alist '(alpha-background . 50)) ; For all new frames henceforth
