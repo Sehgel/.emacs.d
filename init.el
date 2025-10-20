@@ -75,4 +75,22 @@
 (global-set-key (kbd "C-S-f") 'isearch-backward)
 (define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
 
-(add-to-list 'default-frame-alist '(alpha-background . 50)) ; For all new frames henceforth
+(defun toggle-frame-transparency ()
+  "Toggle frame transparency with user-specified opacity value.
+Prompts user whether to enable transparency. If yes, asks for opacity value (0-100).
+If no, restores full opacity. Only affects the active frame."
+  (interactive)
+  (if (y-or-n-p "Enable frame transparency? ")
+      (let ((alpha-value (read-number "Enter transparency value (0-100, default 90): " 90)))
+        (if (and (>= alpha-value 0) (<= alpha-value 100))
+            (progn
+              (set-frame-parameter nil 'alpha alpha-value)
+              (message "Frame transparency set to %d%%" alpha-value))
+          (message "Invalid transparency value. Please enter a number between 0 and 100.")))
+    (progn
+      (set-frame-parameter nil 'alpha 100)
+      (message "Frame transparency disabled (full opacity restored)"))))
+
+;; Global keybinding for transparency toggle
+;;(global-set-key (kbd "C-c T") 'toggle-frame-transparency)
+(set-frame-parameter nil 'alpha 93)

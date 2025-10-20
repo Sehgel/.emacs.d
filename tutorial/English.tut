@@ -1,9 +1,9 @@
-1178
+-1531
 50
 Emacs tutorial.  See end for copying conditions.
-
 Emacs commands generally involve the CONTROL key (often labeled CTRL)
 or the META key (usually labeled ALT).  Rather than writing that
+
 in full each time, we'll use the following abbreviations:
 
  C-<chr>  means hold the CONTROL key while typing the character <chr>.
@@ -29,18 +29,7 @@ try using a command.  For instance:
 
 
 
-
-
-
-
-
-
-
 [Middle of page left blank for didactic purposes.   Text continues below]
-
-
-
-
 
 
 
@@ -118,7 +107,7 @@ are equivalent to the four arrow keys, like this:
    Backward, C-b .... Current cursor position .... Forward, C-f
 				  :
 				  :
-								    Next line, C-n
+			    Next line, C-n
 
 >> Move the cursor to the line in the middle of that diagram
    using C-n or C-p.  Then type C-l to see the whole diagram
