@@ -5,7 +5,7 @@
 ;;(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (toggle-scroll-bar -1)
 (add-to-list 'default-frame-alist '(undecorated . t))
-
+(cua-mode 1)
 (load-theme 'misterioso)
 ;(set-face-attribute 'default nil :font "Fira Code")
 
@@ -58,10 +58,11 @@
 
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-S-s"))
+(global-unset-key (kbd "C-c"))
 
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-S-f"))
-
+(global-unset-key (kbd "C-d"))
 (global-set-key (kbd "M-<up>") 'move-line-up-and-preserve-column)
 (global-set-key (kbd "M-<down>") 'move-line-down-and-preserve-column)
 
@@ -70,7 +71,8 @@
 (global-set-key (kbd "C-v") 'yank)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-y") 'undo-redo)
-
+(global-set-key (kbd "C-d") 'find-file)
+(global-set-key (kbd "C-s") 'save-buffer)
 
 (global-set-key (kbd "C-f") 'isearch-forward)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
@@ -95,4 +97,5 @@ If no, restores full opacity. Only affects the active frame."
 
 ;; Global keybinding for transparency toggle
 ;;(global-set-key (kbd "C-c T") 'toggle-frame-transparency)
-(set-frame-parameter nil 'alpha 93)
+
+(set-frame-parameter nil 'alpha 90)
