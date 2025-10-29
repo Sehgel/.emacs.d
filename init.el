@@ -4,10 +4,11 @@
 (menu-bar-mode -1)
 ;;(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (toggle-scroll-bar -1)
-(add-to-list 'default-frame-alist '(undecorated . t))
+;;(add-to-list 'default-frame-alist '(undecorated . t))
 (cua-mode 1)
 (load-theme 'misterioso)
-;(set-face-attribute 'default nil :font "Fira Code")
+;;(set-face-attribute 'default nil :font "Fira Code")
+(set-face-attribute 'default nil  :weight 'bold :font "Consolas" :family "Monospace" :width 'condensed :height 105)
 
 ;; (view-lossage)
 (setq visible-bell 1)
@@ -73,7 +74,8 @@
 (global-set-key (kbd "C-y") 'undo-redo)
 (global-set-key (kbd "C-d") 'find-file)
 (global-set-key (kbd "C-s") 'save-buffer)
-
+(global-set-key (kbd "C-q") 'kill-buffer)
+ 
 (global-set-key (kbd "C-f") 'isearch-forward)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (global-set-key (kbd "C-S-f") 'isearch-backward)
