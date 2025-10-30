@@ -9,7 +9,7 @@
 (load-theme 'wombat)
 ;;(set-face-attribute 'default nil :font "Fira Code")
 ;;(if (eq system-type 'windows-nt))
-;;  (set-face-attribute 'default nil  :weight 'bold :font "Consolas" :family "Monospace" :width 'condensed :height 105)
+(set-face-attribute 'default nil  :weight 'regular :font "Adwaita Mono" :family "Mono" :width 'normal :height 110)
 
 ;; (view-lossage)
 (setq visible-bell 1)
