@@ -9,7 +9,7 @@
 (load-theme 'wombat)
 ;;(set-face-attribute 'default nil :font "Fira Code")
 ;;(if (eq system-type 'windows-nt))
-(set-face-attribute 'default nil  :weight 'regular :font "Adwaita Mono" :family "Mono" :width 'normal :height 110)
+(set-face-attribute 'default nil  :weight 'regular :font "Adwaita Mono" :family "Mono" :width 'normal :height 100)
 
 ;; (view-lossage)
 (setq visible-bell 1)
@@ -56,17 +56,27 @@
 	(forward-line -1)
     (move-to-column current-column t))) ; Move to the preserved column, creating spaces if needed
 
+
+(setq w32-recognize-altgr nil)
 ;KEY BINDINGS
 
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-S-s"))
 (global-unset-key (kbd "C-c"))
+(global-unset-key (kbd "C-<next>"))
 
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-S-f"))
 (global-unset-key (kbd "C-d"))
 (global-set-key (kbd "M-<up>") 'move-line-up-and-preserve-column)
 (global-set-key (kbd "M-<down>") 'move-line-down-and-preserve-column)
+(global-set-key (kbd "<f24><left>") 'windmove-left)
+(global-set-key (kbd "<f24><right>") 'windmove-right)
+(global-set-key (kbd "<f24><up>") 'windmove-up)
+(global-set-key (kbd "<f24><down>") 'windmove-down)
+(global-set-key (kbd "<f24>C-<right>") (lambda() (interactive) (split-window-right) (windmove-right)))
+(global-set-key (kbd "<f24>C-<next>") 'delete-window)
+
 
 (global-set-key (kbd "C-c") 'kill-ring-save)
 (global-set-key (kbd "C-x") 'kill-region)
