@@ -1,3 +1,8 @@
+;Theme:
+(set-background-color "#302d28")
+(set-face-attribute 'default nil :foreground "#b2aba2")
+(frame-parameter (make-frame '((border-width . 0))) 'border-width)
+
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -6,7 +11,7 @@
 (toggle-scroll-bar -1)
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 (cua-mode 1)
-(load-theme 'wombat)
+;;(load-theme 'wombat)
 ;;(set-face-attribute 'default nil :font "Fira Code")
 ;;(if (eq system-type 'windows-nt))
 (set-face-attribute 'default nil  :weight 'regular :font "Adwaita Mono" :family "Mono" :width 'normal :height 100)
