@@ -60,16 +60,21 @@
 (setq w32-recognize-altgr nil)
 ;KEY BINDINGS
 
+(global-unset-key (kbd "C-w"))
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-S-s"))
 (global-unset-key (kbd "C-c"))
 (global-unset-key (kbd "C-<next>"))
-
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-S-f"))
 (global-unset-key (kbd "C-d"))
+
+(defvar ctl-w-map (make-sparse-keymap))
+(global-set-key (kbd "C-w") ctl-w-map)
+
 (global-set-key (kbd "M-<up>") 'move-line-up-and-preserve-column)
 (global-set-key (kbd "M-<down>") 'move-line-down-and-preserve-column)
+
 (global-set-key (kbd "<f24><left>") 'windmove-left)
 (global-set-key (kbd "<f24><right>") 'windmove-right)
 (global-set-key (kbd "<f24><up>") 'windmove-up)
@@ -77,6 +82,12 @@
 (global-set-key (kbd "<f24>C-<right>") (lambda() (interactive) (split-window-right) (windmove-right)))
 (global-set-key (kbd "<f24>C-<next>") 'delete-window)
 
+(define-key ctl-w-map (kbd "M-<right>") (lambda() (interactive) (split-window-right) (windmove-right)))
+(define-key ctl-w-map (kbd "<left>") 'windmove-left)
+(define-key ctl-w-map (kbd "<right>") 'windmove-right)
+(define-key ctl-w-map (kbd "<up>") 'windmove-up)
+(define-key ctl-w-map (kbd "<down>") 'windmove-down)
+(define-key ctl-w-map (kbd "<next>") 'delete-window)
 
 (global-set-key (kbd "C-c") 'kill-ring-save)
 (global-set-key (kbd "C-x") 'kill-region)
