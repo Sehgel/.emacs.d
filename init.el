@@ -6,9 +6,10 @@
 (toggle-scroll-bar -1)
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 (cua-mode 1)
-(load-theme 'misterioso)
+(load-theme 'wombat)
 ;;(set-face-attribute 'default nil :font "Fira Code")
-(set-face-attribute 'default nil  :weight 'bold :font "Consolas" :family "Monospace" :width 'condensed :height 105)
+;;(if (eq system-type 'windows-nt))
+;;  (set-face-attribute 'default nil  :weight 'bold :font "Consolas" :family "Monospace" :width 'condensed :height 105)
 
 ;; (view-lossage)
 (setq visible-bell 1)
