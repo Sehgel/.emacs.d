@@ -1,5 +1,6 @@
 ;Theme:
 (set-background-color "#302d28")
+(set-face-attribute 'fringe nil :background "#302d28")
 (set-face-attribute 'default nil :foreground "#b2aba2")
 
 (scroll-bar-mode -1)
@@ -101,6 +102,10 @@
 (global-set-key (kbd "C-d") 'find-file)
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "C-q") 'kill-buffer)
+
+(global-set-key (kbd "<f16>") 'buffer-menu)
+;Version for Notebook
+(global-set-key (kbd "<Launch7>") 'buffer-menu)
  
 (global-set-key (kbd "C-f") 'isearch-forward)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
