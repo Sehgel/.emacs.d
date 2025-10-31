@@ -1,7 +1,6 @@
 ;Theme:
 (set-background-color "#302d28")
 (set-face-attribute 'default nil :foreground "#b2aba2")
-(frame-parameter (make-frame '((border-width . 0))) 'border-width)
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
