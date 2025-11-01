@@ -3,6 +3,15 @@
 (set-face-attribute 'fringe nil :background "#302d28")
 (set-face-attribute 'default nil :foreground "#b2aba2")
 
+;Smooth Scrolling?
+(setq pixel-scroll-precision-large-scroll-height 1.0)
+;; scroll one line at a time (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+;;
+
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -73,6 +82,8 @@
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-S-f"))
 (global-unset-key (kbd "C-d"))
+(global-unset-key (kbd "C-M-<up>"))
+(global-unset-key (kbd "C-M-<down>"))
 
 (defvar ctl-w-map (make-sparse-keymap))
 (global-set-key (kbd "C-w") ctl-w-map)
@@ -102,6 +113,11 @@
 (global-set-key (kbd "C-d") 'find-file)
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "C-q") 'kill-buffer)
+
+(global-set-key (kbd "C-M-<down>") 'scroll-up-line)
+(global-set-key (kbd "C-M-<up>") 'scroll-down-line)
+(global-set-key (kbd "C-M-<next>") 'scroll-up)
+(global-set-key (kbd "C-M-<prior>") 'scroll-down)
 
 (global-set-key (kbd "<f16>") 'buffer-menu)
 ;Version for Notebook
