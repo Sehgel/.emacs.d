@@ -16,6 +16,7 @@
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (menu-bar-mode -1)
+(setq inhibit-startup-screen t)
 ;;(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (toggle-scroll-bar -1)
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
@@ -128,6 +129,9 @@
 (global-set-key (kbd "C-S-f") 'isearch-backward)
 (define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
 
+;;(set-frame-parameter nil 'alpha 90)
+(add-to-list 'default-frame-alist '(alpha-background . 90))
+
 (defun toggle-frame-transparency ()
   "Toggle frame transparency with user-specified opacity value.
 Prompts user whether to enable transparency. If yes, asks for opacity value (0-100).
@@ -146,5 +150,3 @@ If no, restores full opacity. Only affects the active frame."
 
 ;; Global keybinding for transparency toggle
 ;;(global-set-key (kbd "C-c T") 'toggle-frame-transparency)
-
-(set-frame-parameter nil 'alpha 90)
