@@ -3,6 +3,9 @@
 (set-face-attribute 'fringe nil :background "#302d28")
 (set-face-attribute 'default nil :foreground "#b2aba2")
 (set-face-foreground 'vertical-border "#404040")
+;;(set-face-attribute 'mode-line nil :background "blue")
+(set-face-attribute 'mode-line nil :box nil)
+(set-face-attribute 'mode-line-inactive nil :box nil)
 ;Smooth Scrolling?
 (setq pixel-scroll-precision-large-scroll-height 1.0)
 ;; scroll one line at a time (less "jumpy" than defaults)
