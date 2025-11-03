@@ -1,11 +1,27 @@
 ;Theme:
 (set-background-color "#302d28")
 (set-face-attribute 'fringe nil :background "#302d28")
-(set-face-attribute 'default nil :foreground "#b2aba2")
+(set-face-attribute 'default nil :foreground "#b2b2b2")
 (set-face-foreground 'vertical-border "#404040")
 ;;(set-face-attribute 'mode-line nil :background "blue")
 (set-face-attribute 'mode-line nil :box nil)
 (set-face-attribute 'mode-line-inactive nil :box nil)
+
+;;ELips coloring
+;;Comments
+(set-face-attribute 'font-lock-comment-face nil :foreground "#666666")
+;;Strings
+(set-face-attribute 'font-lock-string-face nil :foreground "#ac3e4e")
+;;Keywords
+(set-face-attribute 'font-lock-keyword-face nil :foreground "#cf6d30")
+;;Type
+(set-face-attribute 'font-lock-type-face nil :foreground "DarkOrange")
+;;Function name
+(set-face-attribute 'font-lock-function-name-face nil :foreground "#ffffff")
+
+
+
+
 ;Smooth Scrolling?
 (setq pixel-scroll-precision-large-scroll-height 1.0)
 ;; scroll one line at a time (less "jumpy" than defaults)
@@ -102,7 +118,14 @@
 (global-set-key (kbd "<f24>C-<right>") (lambda() (interactive) (split-window-right) (windmove-right)))
 (global-set-key (kbd "<f24>C-<next>") 'delete-window)
 
-(define-key ctl-w-map (kbd "M-<right>") (lambda() (interactive) (split-window-right) (windmove-right)))
+(define-key ctl-w-map (kbd "C-<right>") (lambda() (interactive) (split-window-right) (windmove-right)))
+(define-key ctl-w-map (kbd "C-<down>") (lambda() (interactive) (split-window-below) (windmove-down)))
+
+(define-key ctl-w-map (kbd "M-<right>") 'windmove-swap-states-right)
+(define-key ctl-w-map (kbd "M-<left>") 'windmove-swap-states-left)
+(define-key ctl-w-map (kbd "M-<up>") 'windmove-swap-states-up)
+(define-key ctl-w-map (kbd "M-<down>") 'windmove-swap-states-down)
+
 (define-key ctl-w-map (kbd "<left>") 'windmove-left)
 (define-key ctl-w-map (kbd "<right>") 'windmove-right)
 (define-key ctl-w-map (kbd "<up>") 'windmove-up)
