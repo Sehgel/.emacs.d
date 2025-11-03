@@ -1,3 +1,7 @@
+;Initial
+(when (eq system-type 'windows-nt)
+  (add-to-list 'default-frame-alist '(fullscreen . maximized)))
+
 ;Theme:
 (set-background-color "#302d28")
 (set-face-attribute 'fringe nil :background "#302d28")
@@ -6,6 +10,8 @@
 ;;(set-face-attribute 'mode-line nil :background "blue")
 (set-face-attribute 'mode-line nil :box nil)
 (set-face-attribute 'mode-line-inactive nil :box nil)
+(set-frame-parameter nil 'ns-appearance 'dark)
+(set-frame-parameter nil 'ns-transparent-titlebar nil)
 
 ;;ELips coloring
 ;;Comments
