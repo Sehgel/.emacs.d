@@ -18,7 +18,8 @@
 (set-face-attribute 'font-lock-type-face nil :foreground "DarkOrange")
 ;;Function name
 (set-face-attribute 'font-lock-function-name-face nil :foreground "#ffffff")
-
+;;Highlight background
+(set-face-attribute 'region nil :background "#dddddd" :foreground "black")
 
 
 
