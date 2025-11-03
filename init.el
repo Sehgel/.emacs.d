@@ -133,6 +133,7 @@
 (define-key ctl-w-map (kbd "M-<up>") 'windmove-swap-states-up)
 (define-key ctl-w-map (kbd "M-<down>") 'windmove-swap-states-down)
 
+
 (define-key ctl-w-map (kbd "<left>") 'windmove-left)
 (define-key ctl-w-map (kbd "<right>") 'windmove-right)
 (define-key ctl-w-map (kbd "<up>") 'windmove-up)
@@ -184,3 +185,38 @@ If no, restores full opacity. Only affects the active frame."
 (setq default-directory "~/")
 ;; Global keybinding for transparency toggle
 ;;(global-set-key (kbd "C-c T") 'toggle-frame-transparency)
+
+
+;;Delete windows based on direction
+(defun delete-window-right ()
+  "Delete the window to the right of the selected window."
+  (interactive)
+  (let ((right-window (window-in-direction 'right)))
+    (if right-window
+        (delete-window right-window)
+      (message "No window to the right"))))
+(defun delete-window-left ()
+  "Delete the window to the left of the selected window."
+  (interactive)
+  (let ((left-window (window-in-direction 'left)))
+    (if left-window
+        (delete-window left-window)
+      (message "No window to the left"))))
+(defun delete-window-up ()
+  "Delete the window to the top of the selected window."
+  (interactive)
+  (let ((up-window (window-in-direction 'up)))
+    (if up-window
+        (delete-window up-window)
+      (message "No window to the top"))))
+(defun delete-window-down ()
+  "Delete the window to the bottom of the selected window."
+  (interactive)
+  (let ((bottom-window (window-in-direction 'down)))
+    (if bottom-window
+        (delete-window bottom-window)
+      (message "No window to the bottom"))))
+(global-set-key (kbd "C-w S-<right>") 'delete-window-right)
+(global-set-key (kbd "C-w S-<left>") 'delete-window-left)
+(global-set-key (kbd "C-w S-<up>") 'delete-window-up)
+(global-set-key (kbd "C-w S-<down>") 'delete-window-down)
