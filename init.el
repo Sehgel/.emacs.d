@@ -129,8 +129,8 @@
 (global-set-key (kbd "C-S-f") 'isearch-backward)
 (define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
 
-;;(set-frame-parameter nil 'alpha 90)
-(add-to-list 'default-frame-alist '(alpha-background . 90))
+(set-frame-parameter nil 'alpha 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95))
 
 (defun toggle-frame-transparency ()
   "Toggle frame transparency with user-specified opacity value.
@@ -148,5 +148,6 @@ If no, restores full opacity. Only affects the active frame."
       (set-frame-parameter nil 'alpha 100)
       (message "Frame transparency disabled (full opacity restored)"))))
 
+(setq default-directory "~")
 ;; Global keybinding for transparency toggle
 ;;(global-set-key (kbd "C-c T") 'toggle-frame-transparency)
