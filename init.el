@@ -1,4 +1,5 @@
 ;Initial
+(set-locale-environment "en_US.UTF-8")
 (when (eq system-type 'windows-nt)
   (add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
@@ -118,13 +119,6 @@
 (global-set-key (kbd "M-<up>") 'move-line-up-and-preserve-column)
 (global-set-key (kbd "M-<down>") 'move-line-down-and-preserve-column)
 
-(global-set-key (kbd "<f24><left>") 'windmove-left)
-(global-set-key (kbd "<f24><right>") 'windmove-right)
-(global-set-key (kbd "<f24><up>") 'windmove-up)
-(global-set-key (kbd "<f24><down>") 'windmove-down)
-(global-set-key (kbd "<f24>C-<right>") (lambda() (interactive) (split-window-right) (windmove-right)))
-(global-set-key (kbd "<f24>C-<next>") 'delete-window)
-
 (define-key ctl-w-map (kbd "C-<right>") (lambda() (interactive) (split-window-right) (windmove-right)))
 (define-key ctl-w-map (kbd "C-<down>") (lambda() (interactive) (split-window-below) (windmove-down)))
 
@@ -154,8 +148,8 @@
 (global-set-key (kbd "C-M-<next>") 'scroll-up)
 (global-set-key (kbd "C-M-<prior>") 'scroll-down)
 
-(global-set-key (kbd "<f16>") 'buffer-menu)
-;Version for Notebook
+(global-set-key (kbd "<f22>") 'buffer-menu)
+;Version for Laptop keyboard
 (global-set-key (kbd "<Launch7>") 'buffer-menu)
  
 (global-set-key (kbd "C-f") 'isearch-forward)
