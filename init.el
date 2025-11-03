@@ -133,6 +133,7 @@
 (define-key ctl-w-map (kbd "<up>") 'windmove-up)
 (define-key ctl-w-map (kbd "<down>") 'windmove-down)
 (define-key ctl-w-map (kbd "<next>") 'delete-window)
+(define-key ctl-w-map (kbd "<prior>") 'delete-other-windows)
 
 (global-set-key (kbd "C-c") 'kill-ring-save)
 (global-set-key (kbd "C-x") 'kill-region)
@@ -164,6 +165,7 @@
   "Toggle frame transparency with user-specified opacity value.
 Prompts user whether to enable transparency. If yes, asks for opacity value (0-100).
 If no, restores full opacity. Only affects the active frame."
+
   (interactive)
   (if (y-or-n-p "Enable frame transparency? ")
       (let ((alpha-value (read-number "Enter transparency value (0-100, default 90): " 90)))
@@ -210,6 +212,7 @@ If no, restores full opacity. Only affects the active frame."
     (if bottom-window
         (delete-window bottom-window)
       (message "No window to the bottom"))))
+
 (global-set-key (kbd "C-w S-<right>") 'delete-window-right)
 (global-set-key (kbd "C-w S-<left>") 'delete-window-left)
 (global-set-key (kbd "C-w S-<up>") 'delete-window-up)
