@@ -151,6 +151,6 @@ If no, restores full opacity. Only affects the active frame."
       (set-frame-parameter nil 'alpha 100)
       (message "Frame transparency disabled (full opacity restored)"))))
 
-(setq default-directory "~")
+(setq default-directory "~/")
 ;; Global keybinding for transparency toggle
 ;;(global-set-key (kbd "C-c T") 'toggle-frame-transparency)
