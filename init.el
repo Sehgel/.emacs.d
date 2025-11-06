@@ -29,9 +29,7 @@
 (set-face-attribute 'region nil :background "#dddddd" :foreground "black")
 
 
-
 ;Smooth Scrolling?
-(setq pixel-scroll-precision-large-scroll-height 1.0)
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
@@ -39,6 +37,7 @@
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 ;;
 
+(pixel-scroll-precision-mode 1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -127,13 +126,15 @@
 (define-key ctl-w-map (kbd "M-<up>") 'windmove-swap-states-up)
 (define-key ctl-w-map (kbd "M-<down>") 'windmove-swap-states-down)
 
-
 (define-key ctl-w-map (kbd "<left>") 'windmove-left)
 (define-key ctl-w-map (kbd "<right>") 'windmove-right)
 (define-key ctl-w-map (kbd "<up>") 'windmove-up)
 (define-key ctl-w-map (kbd "<down>") 'windmove-down)
 (define-key ctl-w-map (kbd "<next>") 'delete-window)
 (define-key ctl-w-map (kbd "<prior>") 'delete-other-windows)
+
+(define-key ctl-w-map (kbd ">") 'push-mark-command)
+(define-key ctl-w-map (kbd "<") 'pop-to-mark-command)
 
 (global-set-key (kbd "C-c") 'kill-ring-save)
 (global-set-key (kbd "C-x") 'kill-region)
