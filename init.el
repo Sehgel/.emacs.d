@@ -5,6 +5,7 @@
 
 ;Theme:
 (set-background-color "#302d28")
+(set-face-attribute 'default nil  :weight 'normal :font "Adwaita Mono" :family "Mono" :width 'normal :height 105)
 (set-face-attribute 'fringe nil :background "#302d28")
 (set-face-attribute 'default nil :foreground "#b2b2b2")
 (set-face-foreground 'vertical-border "#404040")
@@ -18,15 +19,21 @@
 ;;Comments
 (set-face-attribute 'font-lock-comment-face nil :foreground "#666666")
 ;;Strings
-(set-face-attribute 'font-lock-string-face nil :foreground "#ac3e4e")
+(set-face-attribute 'font-lock-string-face nil :foreground "#cc8a33")
 ;;Keywords
-(set-face-attribute 'font-lock-keyword-face nil :foreground "#cf6d30")
+(set-face-attribute 'font-lock-keyword-face nil :foreground "#cc6e6e" :weight 'bold)
 ;;Type
-(set-face-attribute 'font-lock-type-face nil :foreground "DarkOrange")
+(set-face-attribute 'font-lock-type-face nil :foreground "#cc6e6e" :weight 'bold)
 ;;Function name
 (set-face-attribute 'font-lock-function-name-face nil :foreground "#ffffff")
 ;;Highlight background
 (set-face-attribute 'region nil :background "#dddddd" :foreground "black")
+
+(set-face-attribute 'font-lock-builtin-face nil :foreground "#dddddd")
+(set-face-attribute 'font-lock-variable-name-face nil :foreground "white")
+
+(set-face-attribute 'show-paren-match nil :background "white" :foreground "black")
+(set-face-attribute 'font-lock-preprocessor-face nil :foreground "grey")
 
 
 ;Smooth Scrolling?
@@ -50,7 +57,6 @@
 ;;(load-theme 'wombat)
 ;;(set-face-attribute 'default nil :font "Fira Code")
 ;;(if (eq system-type 'windows-nt))
-(set-face-attribute 'default nil  :weight 'regular :font "Adwaita Mono" :family "Mono" :width 'normal :height 100)
 
 ;; (view-lossage)
 (setq visible-bell 1)
@@ -218,3 +224,14 @@ If no, restores full opacity. Only affects the active frame."
 (global-set-key (kbd "C-w S-<left>") 'delete-window-left)
 (global-set-key (kbd "C-w S-<up>") 'delete-window-up)
 (global-set-key (kbd "C-w S-<down>") 'delete-window-down)
+
+
+; Source - https://stackoverflow.com/a
+; Posted by thedz
+; Retrieved 2025-11-08, License - CC BY-SA 2.5
+
+(defun what-face (pos)
+    (interactive "d")
+        (let ((face (or (get-char-property (point) 'read-face-name)
+            (get-char-property (point) 'face))))
+    (if face (message "Face: %s" face) (message "No face at %d" pos))))
