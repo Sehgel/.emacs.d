@@ -164,7 +164,8 @@
 (global-set-key (kbd "<f22>") 'buffer-menu)
 ;Version for Laptop keyboard
 (global-set-key (kbd "<Launch7>") 'buffer-menu)
- 
+(global-set-key (kbd "<TouchpadOn>") 'buffer-menu)
+
 (global-set-key (kbd "C-f") 'isearch-forward)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (global-set-key (kbd "C-S-f") 'isearch-backward)
