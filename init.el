@@ -6,10 +6,11 @@
 
 ;Theme:
 (set-background-color "#302d28")
-;(set-face-attribute 'default nil  :weight 'normal :font "Adwaita Mono" :family "Mono" :width 'normal :height 105)
-(set-face-attribute 'default nil  :weight 'semi-bold :font "Iosevka" :family "Mono" :width 'normal :height 105)
-(set-face-attribute 'fringe nil :background "#302d28")
+(set-face-attribute 'default nil  :weight 'normal :font "Adwaita Mono" :family "Mono" :width 'normal :height 105)
+;(set-face-attribute 'default nil  :weight 'regular :font "Fira Code" :family "Mono" :width 'normal :height 105)
 (set-face-attribute 'default nil :foreground "#b2b2b2")
+
+(set-face-attribute 'fringe nil :background "#302d28")
 (set-face-foreground 'vertical-border "#404040")
 (set-face-attribute 'mode-line nil :background "#dddddd")
 ;(set-face-attribute 'mode-line nil :box nil)
@@ -37,8 +38,9 @@
 
 (set-face-attribute 'show-paren-match nil :background "white" :foreground "black")
 (set-face-attribute 'font-lock-preprocessor-face nil :foreground "grey")
-
-
+(set-face-attribute 'font-lock-constant-face nil :foreground "white")
+(set-face-attribute 'minibuffer-prompt nil :foreground "white")
+(set-face-attribute 'cursor nil :foreground "black" :background "white")
 ;Smooth Scrolling?
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
