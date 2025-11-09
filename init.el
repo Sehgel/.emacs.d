@@ -1,17 +1,20 @@
 ;Initial
 (set-locale-environment "en_US.UTF-8")
+;Maximize on start(Only Windows)
 (when (eq system-type 'windows-nt)
   (add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
 ;Theme:
 (set-background-color "#302d28")
-(set-face-attribute 'default nil  :weight 'normal :font "Adwaita Mono" :family "Mono" :width 'normal :height 105)
+;(set-face-attribute 'default nil  :weight 'normal :font "Adwaita Mono" :family "Mono" :width 'normal :height 105)
+(set-face-attribute 'default nil  :weight 'semi-bold :font "Iosevka" :family "Mono" :width 'normal :height 105)
 (set-face-attribute 'fringe nil :background "#302d28")
 (set-face-attribute 'default nil :foreground "#b2b2b2")
 (set-face-foreground 'vertical-border "#404040")
-;;(set-face-attribute 'mode-line nil :background "blue")
-(set-face-attribute 'mode-line nil :box nil)
-(set-face-attribute 'mode-line-inactive nil :box nil)
+(set-face-attribute 'mode-line nil :background "#dddddd")
+;(set-face-attribute 'mode-line nil :box nil)
+(set-face-attribute 'mode-line nil :box '(:line-width 2 :color "#333333" :right-only))
+(set-face-attribute 'mode-line-inactive nil :box '(:line-width 2 :color "#333333"))
 (set-frame-parameter nil 'ns-appearance 'dark)
 (set-frame-parameter nil 'ns-transparent-titlebar nil)
 
