@@ -171,6 +171,11 @@
 (global-set-key (kbd "C-S-f") 'isearch-backward)
 (define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
 
+					; Compilation
+(global-unset-key (kbd "C-r"))
+(global-set-key (kbd "C-r r")  (lambda () (interactive) (compile "make build run")))
+(global-set-key (kbd "C-r b")  (lambda () (interactive) (compile "make build")))
+
 (set-frame-parameter nil 'alpha 95)
 (add-to-list 'default-frame-alist '(alpha-background . 95))
 
@@ -232,10 +237,6 @@ If no, restores full opacity. Only affects the active frame."
 (global-set-key (kbd "C-w S-<down>") 'delete-window-down)
 
 
-; Source - https://stackoverflow.com/a
-; Posted by thedz
-; Retrieved 2025-11-08, License - CC BY-SA 2.5
-
 (defun what-face (pos)
     (interactive "d")
         (let ((face (or (get-char-property (point) 'read-face-name)
@@ -245,8 +246,10 @@ If no, restores full opacity. Only affects the active frame."
 
 ; Always display compilation buffer below the current buffer in a new window
 (add-to-list 'display-buffer-alist
-             '("\\*compilation\\*"
-               (display-buffer-below-selected)
+	     '("\\*compilation\\*"
+	     (display-buffer-below-selected)
                ;; Specify a fixed height (in lines) for the compilation window
-               (window-height . 10)
-               ))
+             (window-height . 10)
+             ))
+
+(setq compilation-scroll-output t)
