@@ -241,3 +241,12 @@ If no, restores full opacity. Only affects the active frame."
         (let ((face (or (get-char-property (point) 'read-face-name)
             (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
+
+
+; Always display compilation buffer below the current buffer in a new window
+(add-to-list 'display-buffer-alist
+             '("\\*compilation\\*"
+               (display-buffer-below-selected)
+               ;; Specify a fixed height (in lines) for the compilation window
+               (window-height . 10)
+               ))
