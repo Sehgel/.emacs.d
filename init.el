@@ -252,4 +252,4 @@ If no, restores full opacity. Only affects the active frame."
              (window-height . 10)
              ))
 
-(setq compilation-scroll-output t)
+(setq compilation-scroll-output 'first-error)
