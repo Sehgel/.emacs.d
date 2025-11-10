@@ -6,7 +6,7 @@
 
 ;Theme:
 (set-background-color "#302d28")
-(set-face-attribute 'default nil  :weight 'normal :font "Adwaita Mono" :family "Mono" :width 'normal :height 105)
+(set-face-attribute 'default nil  :weight 'normal :font "Cascadia Mono" :family "Mono" :width 'normal :height 105)
 ;(set-face-attribute 'default nil  :weight 'regular :font "Fira Code" :family "Mono" :width 'normal :height 105)
 (set-face-attribute 'default nil :foreground "#b2b2b2")
 
