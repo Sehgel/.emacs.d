@@ -1,4 +1,5 @@
 ;Initial
+(load "~/.emacs.d/jai-mode.el")
 (set-locale-environment "en_US.UTF-8")
 ;Maximize on start(Only Windows)
 (when (eq system-type 'windows-nt)
@@ -25,9 +26,9 @@
 ;;Strings
 (set-face-attribute 'font-lock-string-face nil :foreground "#cc8a33")
 ;;Keywords
-(set-face-attribute 'font-lock-keyword-face nil :foreground "#cc6e6e" :weight 'bold)
+(set-face-attribute 'font-lock-keyword-face nil :foreground "#cc6e6e")
 ;;Type
-(set-face-attribute 'font-lock-type-face nil :foreground "#cc6e6e" :weight 'bold)
+(set-face-attribute 'font-lock-type-face nil :foreground "#cc6e6e")
 ;;Function name
 (set-face-attribute 'font-lock-function-name-face nil :foreground "#ffffff")
 ;;Highlight background
