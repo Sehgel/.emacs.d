@@ -1,6 +1,7 @@
 ;Initial
 (load "~/.emacs.d/jai-mode.el")
 (set-locale-environment "en_US.UTF-8")
+
 ;Maximize on start(Only Windows)
 (when (eq system-type 'windows-nt)
   (add-to-list 'default-frame-alist '(fullscreen . maximized)))
@@ -172,10 +173,37 @@
 (global-set-key (kbd "C-S-f") 'isearch-backward)
 (define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
 
-					; Compilation
+; Compilation
+(defun compile-file ()
+  "Compile, build, and run in C-mode or derived modes."
+  (when (derived-mode-p 'c-mode)
+    (save-buffer)
+    (compile "make build run")
+    )
+  (when (derived-mode-p 'jai-mode)
+    (save-buffer)
+    (compile (concat (concat "jai " (file-name-nondirectory buffer-file-name)) " -x64 && " (concat (file-name-sans-extension buffer-file-name) ".exe")))
+    ;(shell-command )
+    )
+  )
+
+(defun kill-buffer-other-window (buffer-name)
+  "Kill BUFFER-NAME and delete the window displaying it, if any."
+  (interactive "sKill buffer: ")
+  (let ((target-buffer (get-buffer buffer-name)))
+    (when target-buffer
+      (let ((window (get-buffer-window target-buffer)))
+        (when window
+          (delete-window window))))))
+
 (global-unset-key (kbd "C-r"))
-(global-set-key (kbd "C-r r")  (lambda () (interactive) (compile "make build run")))
+(global-set-key (kbd "C-r s")  (lambda () (interactive) (kill-buffer-other-window "*compilation*")))
+(global-set-key (kbd "C-r r")  (lambda () (interactive) (compile-file)))
 (global-set-key (kbd "C-r b")  (lambda () (interactive) (compile "make build")))
+
+(add-hook 'jai-mode-hook
+          (lambda ()
+            (setq-local compile-command "jai %f")))
 
 (set-frame-parameter nil 'alpha 95)
 (add-to-list 'default-frame-alist '(alpha-background . 95))
