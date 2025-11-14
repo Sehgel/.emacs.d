@@ -278,7 +278,7 @@ If no, restores full opacity. Only affects the active frame."
 	     '("\\*compilation\\*"
 	     (display-buffer-below-selected)
                ;; Specify a fixed height (in lines) for the compilation window
-             (window-height . 10)
+             (window-height . 15)
              ))
 
 (setq compilation-scroll-output 'first-error)
