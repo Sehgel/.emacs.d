@@ -1,6 +1,8 @@
 ;Initial
 (load "~/.emacs.d/jai-mode.el")
 (set-locale-environment "en_US.UTF-8")
+(setq default-directory "~/")
+(setq make-backup-files nil) ; stop creating ~ files
 
 ;Maximize on start(Only Windows)
 (when (eq system-type 'windows-nt)
@@ -189,7 +191,7 @@
 
 (defun kill-buffer-other-window (buffer-name)
   "Kill BUFFER-NAME and delete the window displaying it, if any."
-  (interactive "sKill buffer: ")
+  (interactive "Skill buffer: ")
   (let ((target-buffer (get-buffer buffer-name)))
     (when target-buffer
       (let ((window (get-buffer-window target-buffer)))
@@ -225,7 +227,6 @@ If no, restores full opacity. Only affects the active frame."
       (set-frame-parameter nil 'alpha 100)
       (message "Frame transparency disabled (full opacity restored)"))))
 
-(setq default-directory "~/")
 ;; Global keybinding for transparency toggle
 ;;(global-set-key (kbd "C-c T") 'toggle-frame-transparency)
 
