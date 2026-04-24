@@ -199,7 +199,7 @@
           (delete-window window))))))
 
 (global-unset-key (kbd "C-r"))
-(global-set-key (kbd "C-r s")  (lambda () (interactive) (kill-buffer-other-window "*compilation*")))
+(global-set-key (kbd "<escape>")  (lambda () (interactive) (kill-buffer-other-window "*compilation*")))
 (global-set-key (kbd "C-r r")  (lambda () (interactive) (compile-file)))
 (global-set-key (kbd "C-r b")  (lambda () (interactive) (compile "make build")))
 
