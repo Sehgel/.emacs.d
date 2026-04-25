@@ -145,8 +145,8 @@
 (define-key ctl-w-map (kbd "<right>") 'windmove-right)
 (define-key ctl-w-map (kbd "<up>") 'windmove-up)
 (define-key ctl-w-map (kbd "<down>") 'windmove-down)
-(define-key ctl-w-map (kbd "<next>") 'delete-window)
-(define-key ctl-w-map (kbd "<prior>") 'delete-other-windows)
+(define-key ctl-w-map (kbd "DEL") 'delete-other-windows)
+(define-key ctl-w-map (kbd "<delete>") 'delete-window)
 
 (define-key ctl-w-map (kbd ">") 'push-mark-command)
 (define-key ctl-w-map (kbd "<") 'pop-to-mark-command)
