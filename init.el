@@ -76,6 +76,20 @@
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+
+
+;; I-Search and minibuffer
+(define-key minibuffer-local-map (kbd "C-v") 'yank)
+(define-key minibuffer-local-completion-map (kbd "C-v") 'yank)
+(define-key minibuffer-local-must-match-map (kbd "C-v") 'yank)
+(define-key isearch-mode-map (kbd "C-v") 'isearch-yank-kill)
+
+(define-key isearch-mode-map (kbd "C-z") 'isearch-ring-retreat)
+(define-key isearch-mode-map (kbd "C-y") 'isearch-ring-advance)
+(define-key isearch-mode-map (kbd "C-e") 'isearch-edit-string)
+(define-key isearch-mode-map (kbd "<up>")   'isearch-repeat-backward)
+(define-key isearch-mode-map (kbd "<down>") 'isearch-repeat-forward)
+
 (global-set-key [escape] 'keyboard-quit)
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
