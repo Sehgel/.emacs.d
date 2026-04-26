@@ -42,7 +42,7 @@
     (modify-syntax-entry ?\\ "\\" table)
 
     ;; additional symbols
-    (modify-syntax-entry ?_ "w" table)
+    (modify-syntax-entry ?_ "." table)
 
     (modify-syntax-entry ?' "." table)
     (modify-syntax-entry ?: "." table)

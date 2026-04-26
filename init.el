@@ -1,6 +1,6 @@
 ;Initial
 (load "~/.emacs.d/jai-mode.el")
-(set-locale-environment "en_US.UTF-8")
+(set-locale-environment "utf-8-dos")
 (setq default-directory "~/")
 (setq make-backup-files nil) ; stop creating ~ files
 
@@ -89,6 +89,21 @@
 (define-key isearch-mode-map (kbd "C-e") 'isearch-edit-string)
 (define-key isearch-mode-map (kbd "<up>")   'isearch-repeat-backward)
 (define-key isearch-mode-map (kbd "<down>") 'isearch-repeat-forward)
+
+(defun forward-word-with-underscore ()
+  (interactive)
+  (with-syntax-table (copy-syntax-table (syntax-table))
+    (modify-syntax-entry ?_ "w")
+    (forward-word)))
+
+(defun backward-word-with-underscore ()
+  (interactive)
+  (with-syntax-table (copy-syntax-table (syntax-table))
+    (modify-syntax-entry ?_ "w")
+    (backward-word)))
+
+(global-set-key (kbd "C-<right>") 'forward-word-with-underscore)
+(global-set-key (kbd "C-<left>")  'backward-word-with-underscore)
 
 (global-set-key [escape] 'keyboard-quit)
 
