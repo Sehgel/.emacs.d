@@ -190,6 +190,14 @@
 (global-unset-key (kbd "C-M-<up>"))
 (global-unset-key (kbd "C-M-<down>"))
 
+;; Unbind C-home and C-end
+(global-unset-key (kbd "C-<home>"))
+(global-unset-key (kbd "C-<end>"))
+
+;; Bind C-prior (C-PageUp) and C-next (C-PageDown) to beginning/end of buffer
+(global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
+(global-set-key (kbd "C-<next>")  'end-of-buffer)
+
 (defvar ctl-w-map (make-sparse-keymap))
 (global-set-key (kbd "C-w") ctl-w-map)
 
