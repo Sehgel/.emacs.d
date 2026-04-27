@@ -124,23 +124,47 @@
   (forward-line -1)
   (indent-according-to-mode))
  
+(defun move-region-or-line (direction)
+  "Move the current line or selected region up (-1) or down (1)."
+  (let* ((has-region (use-region-p))
+         (start (if has-region (region-beginning) (line-beginning-position)))
+         (end   (if has-region (region-end) (line-end-position)))
+         (col   (current-column))
+         (point-at-start (and has-region (= (point) start))))
+    (goto-char start) (setq start (line-beginning-position))
+    (goto-char end)
+    (unless (bolp) (forward-line 1))
+    (setq end (point))
+    (let ((text (delete-and-extract-region start end)))
+      (if (= direction -1)
+          (progn (forward-line -1) (beginning-of-line))
+        (progn (forward-line 1) (beginning-of-line)
+               (when (eobp) (insert "\n"))))
+      (let* ((insert-pos (point))
+             (region-start insert-pos)
+             (region-end (- (+ insert-pos (length text)) 1)))
+        (insert text)
+        (if has-region
+            (run-with-timer
+             0 nil
+             (lambda (buf rs re pat)
+               (with-current-buffer buf
+                 (if pat
+                     (progn (goto-char rs) (set-mark re))
+                   (progn (goto-char re) (set-mark rs)))
+                 (setq mark-active t)
+                 (setq transient-mark-mode (cons 'only transient-mark-mode))))
+             (current-buffer) region-start region-end point-at-start)
+          (goto-char insert-pos)
+          (move-to-column col t))))))
+
 (defun move-line-up-and-preserve-column ()
-  "Move the current line up by one, preserving the cursor's column position."
   (interactive)
-  (let ((current-column (current-column)))
-    (transpose-lines 1)
-    (forward-line -2) ; Move back to the original line's position after transpose
-    (move-to-column current-column t))) ; Move to the preserved column, creating spaces if needed
+  (move-region-or-line -1))
 
 (defun move-line-down-and-preserve-column ()
-  "Move the current line up by one, preserving the cursor's column position."
   (interactive)
-  (let ((current-column (current-column)))
-    (forward-line 1)
-	(transpose-lines 1)
-	(forward-line -1)
-    (move-to-column current-column t))) ; Move to the preserved column, creating spaces if needed
-
+  (move-region-or-line 1))
 
 (setq w32-recognize-altgr nil)
 ;KEY BINDINGS
