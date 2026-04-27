@@ -40,11 +40,12 @@
 (set-face-attribute 'font-lock-builtin-face nil :foreground "#dddddd")
 (set-face-attribute 'font-lock-variable-name-face nil :foreground "white")
 
-(set-face-attribute 'show-paren-match nil :background "white" :foreground "black")
+(set-face-attribute 'show-paren-match nil :foreground "black" :background "grey")
 (set-face-attribute 'font-lock-preprocessor-face nil :foreground "grey")
 (set-face-attribute 'font-lock-constant-face nil :foreground "white")
 (set-face-attribute 'minibuffer-prompt nil :foreground "white")
-(set-face-attribute 'cursor nil :foreground "black" :background "white")
+(set-face-attribute 'cursor nil :foreground "white" :background "white")
+(setq cursor-type 'box)
 ;Smooth Scrolling?
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
@@ -70,13 +71,18 @@
 ;; (view-lossage)
 (setq visible-bell 1)
 
-;; esc always quits
+;; ESCAPE REBINDS
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-
+(global-set-key [escape] 'keyboard-quit)
+(defun my/deactivate-mark ()
+  (interactive)
+  (deactivate-mark))
+(define-key input-decode-map (kbd "<escape>") (kbd "C-g"))
+(global-set-key (kbd"<escape>")  (lambda () (interactive) (kill-buffer-other-window "*compilation*")))
 
 ;; I-Search and minibuffer
 (define-key minibuffer-local-map (kbd "C-v") 'yank)
@@ -87,8 +93,11 @@
 (define-key isearch-mode-map (kbd "C-z") 'isearch-ring-retreat)
 (define-key isearch-mode-map (kbd "C-y") 'isearch-ring-advance)
 (define-key isearch-mode-map (kbd "C-e") 'isearch-edit-string)
-(define-key isearch-mode-map (kbd "<up>")   'isearch-repeat-backward)
-(define-key isearch-mode-map (kbd "<down>") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "<left>")   'isearch-repeat-backward)
+(define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward)
+
+(keymap-set isearch-mode-map "<up>" 'isearch-ring-retreat)
+(keymap-set isearch-mode-map "<down>" 'isearch-ring-advance)
 
 (defun forward-word-with-underscore ()
   (interactive)
@@ -104,10 +113,8 @@
     (modify-syntax-entry ?- "w")
     (backward-word)))
 
-(global-set-key (kbd "C-<right>") 'forward-word-with-underscore)
-(global-set-key (kbd "C-<left>")  'backward-word-with-underscore)
-
-(global-set-key [escape] 'keyboard-quit)
+;;(global-set-key (kbd "C-<right>") 'forward-word-with-underscore) ;;This is bug prone. Not suitable to use yet.
+;;(global-set-key (kbd "C-<left>")  'backward-word-with-underscore)
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
@@ -272,7 +279,6 @@
           (delete-window window))))))
 
 (global-unset-key (kbd "C-r"))
-(global-set-key (kbd "<escape>")  (lambda () (interactive) (kill-buffer-other-window "*compilation*")))
 (global-set-key (kbd "C-r r")  (lambda () (interactive) (compile-file)))
 (global-set-key (kbd "C-r b")  (lambda () (interactive) (compile "make build")))
 
