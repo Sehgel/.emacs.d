@@ -289,7 +289,14 @@
 (global-set-key (kbd "C-c") 'copy-region-or-line)
 (global-set-key (kbd "C-c") 'kill-ring-save)
 (global-set-key (kbd "C-x") 'kill-region)
-(global-set-key (kbd "C-v") 'yank)
+(defun yank-replace-region ()
+  "Yank, replacing selected region if active."
+  (interactive)
+  (when (and mark-active (mark))
+    (delete-region (region-beginning) (region-end)))
+  (yank))
+
+(global-set-key (kbd "C-v") 'yank-replace-region)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-y") 'undo-redo)
 (global-set-key (kbd "C-d") 'find-file)
