@@ -125,7 +125,33 @@
     (modify-syntax-entry ?- "w")
     (backward-word)))
 
-;;(global-set-key (kbd "C-<right>") 'forward-word-with-underscore) ;;This is bug prone. Not suitable to use yet.
+(defun my-before-save ()
+  (message "About to save!"))
+
+(defun forward-word-underscore (&optional arg)
+  "Move forward a word, treating underscore as a word character."
+  (interactive "^p")  ; the ^ is key — it enables shift-selection
+  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?- "w")
+  (forward-word arg)
+  (modify-syntax-entry ?_ "_")
+  (modify-syntax-entry ?- "-"))
+
+(defun backward-word-underscore (&optional arg)
+  "Move backward a word, treating underscore as a word character."
+  (interactive "^p")  ; the ^ is key — it enables shift-selection
+  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?- "w")
+  (backward-word arg)
+  (modify-syntax-entry ?_ "_")
+  (modify-syntax-entry ?- "-"))
+
+(global-set-key (kbd "C-<right>") #'forward-word-underscore)
+(global-set-key (kbd "C-<left>") #'backward-word-underscore)
+;;(global-set-key (kbd "C-<right>") 'my-c-right)
+;;(add-hook 'post-comma
+;;(global-set-key (kbd "C-<right>") (lambda () (interactive) (modify-syntax-entry ?- "w") (forward-word)))
+;;(global-set-key (kbd "C-r<ight>") 'forward-word-with-underscore) ;;This is bug prone. Not suitable to use yet.
 ;;(global-set-key (kbd "C-<left>")  'backward-word-with-underscore)
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
