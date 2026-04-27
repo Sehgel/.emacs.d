@@ -130,7 +130,10 @@
          (start (if has-region (region-beginning) (line-beginning-position)))
          (end   (if has-region (region-end) (line-end-position)))
          (col   (current-column))
-         (point-at-start (and has-region (= (point) start))))
+         (point-at-start (and has-region (= (point) start)))
+         (start-offset (save-excursion (goto-char start) (current-column)))
+         (end-offset   (save-excursion (goto-char end) (current-column)))
+         (num-lines    (count-lines start end)))
     (goto-char start) (setq start (line-beginning-position))
     (goto-char end)
     (unless (bolp) (forward-line 1))
@@ -140,21 +143,28 @@
           (progn (forward-line -1) (beginning-of-line))
         (progn (forward-line 1) (beginning-of-line)
                (when (eobp) (insert "\n"))))
-      (let* ((insert-pos (point))
-             (region-start insert-pos)
-             (region-end (- (+ insert-pos (length text)) 1)))
+      (let ((insert-pos (point)))
         (insert text)
         (if has-region
-            (run-with-timer
-             0 nil
-             (lambda (buf rs re pat)
-               (with-current-buffer buf
-                 (if pat
-                     (progn (goto-char rs) (set-mark re))
-                   (progn (goto-char re) (set-mark rs)))
-                 (setq mark-active t)
-                 (setq transient-mark-mode (cons 'only transient-mark-mode))))
-             (current-buffer) region-start region-end point-at-start)
+            (let* ((region-start (save-excursion
+                                   (goto-char insert-pos)
+                                   (move-to-column start-offset)
+                                   (point)))
+                   (region-end   (save-excursion
+                                   (goto-char insert-pos)
+                                   (forward-line (1- num-lines))
+                                   (move-to-column end-offset)
+                                   (point))))
+              (run-with-timer
+               0 nil
+               (lambda (buf rs re pat)
+                 (with-current-buffer buf
+                   (if pat
+                       (progn (goto-char rs) (set-mark re))
+                     (progn (goto-char re) (set-mark rs)))
+                   (setq mark-active t)
+                   (setq transient-mark-mode (cons 'only transient-mark-mode))))
+               (current-buffer) region-start region-end point-at-start))
           (goto-char insert-pos)
           (move-to-column col t))))))
 
