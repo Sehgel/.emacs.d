@@ -46,6 +46,9 @@
 (set-face-attribute 'minibuffer-prompt nil :foreground "white")
 (set-face-attribute 'cursor nil :foreground "white" :background "white")
 (setq cursor-type 'box)
+
+(set-face-attribute 'isearch nil :background "#cc8a33" :foreground "white")
+(set-face-attribute 'lazy-highlight nil :background "grey" :foreground "white")
 ;Smooth Scrolling?
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
@@ -95,6 +98,8 @@
 (define-key isearch-mode-map (kbd "C-e") 'isearch-edit-string)
 (define-key isearch-mode-map (kbd "<left>")   'isearch-repeat-backward)
 (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "<prior>") 'isearch-toggle-case-fold)
+(define-key isearch-mode-map (kbd "<next>") #'ignore)
 
 (keymap-set isearch-mode-map "<up>" 'isearch-ring-retreat)
 (keymap-set isearch-mode-map "<down>" 'isearch-ring-advance)
