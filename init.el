@@ -94,12 +94,14 @@
   (interactive)
   (with-syntax-table (copy-syntax-table (syntax-table))
     (modify-syntax-entry ?_ "w")
+    (modify-syntax-entry ?- "w")
     (forward-word)))
 
 (defun backward-word-with-underscore ()
   (interactive)
   (with-syntax-table (copy-syntax-table (syntax-table))
     (modify-syntax-entry ?_ "w")
+    (modify-syntax-entry ?- "w")
     (backward-word)))
 
 (global-set-key (kbd "C-<right>") 'forward-word-with-underscore)
