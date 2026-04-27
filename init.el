@@ -80,12 +80,19 @@
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-(global-set-key [escape] 'keyboard-quit)
+
 (defun my/deactivate-mark ()
   (interactive)
   (deactivate-mark))
-(define-key input-decode-map (kbd "<escape>") (kbd "C-g"))
-(global-set-key (kbd"<escape>")  (lambda () (interactive) (kill-buffer-other-window "*compilation*")))
+;;(define-key input-decode-map (kbd "<escape>") (kbd "C-g"))
+(defun my/escape-dwim ()
+  "Quit, or kill *compilation* if it's visible."
+  (interactive)
+  (if (get-buffer-window "*compilation*")
+      (kill-buffer-other-window "*compilation*")
+    (keyboard-quit)))
+
+(define-key global-map [escape] 'my/escape-dwim)
 
 ;; I-Search and minibuffer
 (define-key minibuffer-local-map (kbd "C-v") 'yank)
