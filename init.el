@@ -75,16 +75,17 @@
 (setq visible-bell 1)
 
 ;; ESCAPE REBINDS
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-
+;;(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+;;(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+;;(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+;;(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+;;(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+;;(define-key input-decode-map (kbd "C-g") (kbd "<escape>"))
+(define-key global-map (kbd "C-g") 'my/escape-dwim)
+(define-key input-decode-map (kbd "<escape>") (kbd "C-g"))
 (defun my/deactivate-mark ()
   (interactive)
   (deactivate-mark))
-;;(define-key input-decode-map (kbd "<escape>") (kbd "C-g"))
 (defun my/escape-dwim ()
   "Quit, or kill *compilation* if it's visible."
   (interactive)
@@ -92,7 +93,6 @@
       (kill-buffer-other-window "*compilation*")
     (keyboard-quit)))
 
-(define-key global-map [escape] 'my/escape-dwim)
 
 ;; I-Search and minibuffer
 (define-key minibuffer-local-map (kbd "C-v") 'yank)
