@@ -66,7 +66,7 @@
 ;;(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (toggle-scroll-bar -1)
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
-(cua-mode 1)
+(cua-mode -1)
 ;;(load-theme 'wombat)
 ;;(set-face-attribute 'default nil :font "Fira Code")
 ;;(if (eq system-type 'windows-nt))
@@ -139,7 +139,7 @@
 
 (defun backward-word-underscore (&optional arg)
   "Move backward a word, treating underscore as a word character."
-  (interactive "^p")  ; the ^ is key — it enables shift-selection
+  (interactive "^p")  ; the ^ is key — it enables shift-selection !Important
   (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?- "w")
   (backward-word arg)
@@ -226,10 +226,10 @@
 (setq w32-recognize-altgr nil)
 ;KEY BINDINGS
 
+(global-unset-key (kbd "C-c"))
 (global-unset-key (kbd "C-w"))
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-S-s"))
-(global-unset-key (kbd "C-c"))
 (global-unset-key (kbd "C-<next>"))
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-S-f"))
@@ -269,6 +269,24 @@
 (define-key ctl-w-map (kbd ">") 'push-mark-command)
 (define-key ctl-w-map (kbd "<") 'pop-to-mark-command)
 
+(defun copy-region-or-line ()
+  "Copy selected region, or current line if nothing is selected."
+  (interactive)
+  (if (and mark-active (mark))
+      (kill-ring-save (region-beginning) (region-end))
+    (let ((beg (line-beginning-position))
+          (end (min (1+ (line-end-position)) (point-max))))
+      (kill-ring-save beg end)
+      (put-text-property 0 1 'yank-handler
+                         '(my-yank-line-handler)
+                         (car kill-ring)))))
+
+(defun my-yank-line-handler (str)
+  "Yank STR as a full line, inserting before the current line."
+  (beginning-of-line)
+  (insert str))
+
+(global-set-key (kbd "C-c") 'copy-region-or-line)
 (global-set-key (kbd "C-c") 'kill-ring-save)
 (global-set-key (kbd "C-x") 'kill-region)
 (global-set-key (kbd "C-v") 'yank)
