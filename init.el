@@ -1,4 +1,4 @@
-;Initial
+;Initials
 (load "~/.emacs.d/jai-mode.el")
 (set-locale-environment "utf-8-dos")
 (setq default-directory "~/")
@@ -66,7 +66,7 @@
 ;;(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (toggle-scroll-bar -1)
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
-(cua-mode -1)
+(cua-mode t)
 ;;(load-theme 'wombat)
 ;;(set-face-attribute 'default nil :font "Fira Code")
 ;;(if (eq system-type 'windows-nt))
@@ -226,7 +226,6 @@
 (setq w32-recognize-altgr nil)
 ;KEY BINDINGS
 
-(global-unset-key (kbd "C-c"))
 (global-unset-key (kbd "C-w"))
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-S-s"))
@@ -286,8 +285,10 @@
   (beginning-of-line)
   (insert str))
 
+(global-unset-key (kbd "C-c"))
+(keymap-unset global-map "C-c")
 (global-set-key (kbd "C-c") 'copy-region-or-line)
-(global-set-key (kbd "C-c") 'kill-ring-save)
+;;(global-set-key (kbd "C-c") 'kill-ring-save)
 (global-set-key (kbd "C-x") 'kill-region)
 (defun yank-replace-region ()
   "Yank, replacing selected region if active."
