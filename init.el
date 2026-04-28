@@ -342,7 +342,9 @@
           (delete-window window))))))
 
 (global-unset-key (kbd "C-r"))
-(global-set-key (kbd "C-r r")  (lambda () (interactive) (compile-file)))
+;;(global-set-key (kbd "C-r r")  (lambda () (interactive) (compile-file)))
+(global-set-key (kbd "C-r r") #'project-compile)
+
 (global-set-key (kbd "C-r b")  (lambda () (interactive) (compile "make build")))
 
 (add-hook 'jai-mode-hook
@@ -423,7 +425,9 @@ If no, restores full opacity. Only affects the active frame."
                ;; Specify a fixed height (in lines) for the compilation window
              (window-height . 15)
              ))
-
+(setq compilation-read-command nil)
+(setq compilation-ask-about-save nil)
+(setq compilation-save-buffers-predicate t) ; or use 'all to save all
 (setq compilation-skip-threshold 2)
 (setq compilation-scroll-output 'first-)
 (custom-set-variables
@@ -431,7 +435,8 @@ If no, restores full opacity. Only affects the active frame."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(glsl-mode)))
+ '(package-selected-packages '(glsl-mode))
+ '(safe-local-variable-directories '("c:/Users/Admin/dev/jai/jai_snake/")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
