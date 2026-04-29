@@ -1,4 +1,5 @@
 ;Initials
+(setq enable-local-eval t)
 (load "~/.emacs.d/jai-mode.el")
 (set-locale-environment "utf-8-dos")
 (setq default-directory "~/")
@@ -411,6 +412,13 @@ If no, restores full opacity. Only affects the active frame."
 (global-set-key (kbd "C-w S-<up>") 'delete-window-up)
 (global-set-key (kbd "C-w S-<down>") 'delete-window-down)
 
+;;Project prefix key
+(defvar ctl-p-map (make-sparse-keymap))
+(global-set-key (kbd "C-p") ctl-p-map)
+
+(global-set-key (kbd "C-p f") 'project-find-file)
+(global-set-key (kbd "C-p f") 'project-find-file)
+(global-set-key (kbd "C-p g") 'project-find-regexp)
 
 (defun what-face (pos)
     (interactive "d")
