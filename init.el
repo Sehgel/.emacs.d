@@ -278,6 +278,14 @@
 (define-key ctl-w-map (kbd "DEL") 'delete-other-windows)
 (define-key ctl-w-map (kbd "<delete>") 'delete-window)
 
+(defun enlarge-window-horizontally-max ()
+  "Enlarge current window horizontally to the maximum size."
+  (interactive)
+  (enlarge-window-horizontally (frame-width)))
+
+(define-key ctl-w-map (kbd "<prior>") 'enlarge-window-horizontally-max)
+(define-key ctl-w-map (kbd "<next>") 'balance-windows)
+
 (define-key ctl-w-map (kbd ">") 'push-mark-command)
 (define-key ctl-w-map (kbd "<") 'pop-to-mark-command)
 
