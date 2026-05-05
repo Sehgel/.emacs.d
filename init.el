@@ -19,8 +19,10 @@
 (set-face-foreground 'vertical-border "#404040")
 (set-face-attribute 'mode-line nil :background "#dddddd")
 ;(set-face-attribute 'mode-line nil :box nil)
-(set-face-attribute 'mode-line nil :box '(:line-width 2 :color "#333333" :right-only))
-(set-face-attribute 'mode-line-inactive nil :box '(:line-width 2 :color "#333333"))
+;(set-face-attribute 'mode-line nil :box '(:line-width 1 :color "red" :right-only))
+(set-face-attribute 'mode-line nil :box nil)
+;(set-face-attribute 'mode-line-inactive nil :box '(:line-width 2 :color "#333333"))
+(set-face-attribute 'mode-line-inactive nil :box nil)
 (set-frame-parameter nil 'ns-appearance 'dark)
 (set-frame-parameter nil 'ns-transparent-titlebar nil)
 
@@ -147,8 +149,18 @@
   (modify-syntax-entry ?_ "_")
   (modify-syntax-entry ?- "-"))
 
+(defun backward-kill-word-underscore (&optional arg)
+  "Kill backward a word, treating underscore and hyphen as word characters."
+  (interactive "p")
+  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?- "w")
+  (backward-kill-word arg)
+  (modify-syntax-entry ?_ "_")
+  (modify-syntax-entry ?- "-"))
+
 (global-set-key (kbd "C-<right>") #'forward-word-underscore)
 (global-set-key (kbd "C-<left>") #'backward-word-underscore)
+(global-set-key (kbd "C-<backspace>") #'backward-kill-word-underscore)
 ;;(global-set-key (kbd "C-<right>") 'my-c-right)
 ;;(add-hook 'post-comma
 ;;(global-set-key (kbd "C-<right>") (lambda () (interactive) (modify-syntax-entry ?- "w") (forward-word)))
